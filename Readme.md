@@ -186,5 +186,3 @@ BSTs are used to implement efficient searching and sorting algorithms.
 
 ## Conclusion
 This document provided an introduction to Binary Trees (BT) and Binary Search Trees (BST) along with multiple-choice questions to help you test your understanding of these concepts. These questions cover various properties and operations of BTs and BSTs, helping you prepare for interviews and exams.
-
-Feel free to reach out if you have any questions or need further assistance!
