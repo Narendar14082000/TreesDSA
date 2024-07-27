@@ -5,9 +5,7 @@ class BinaryTreeNode<T> {
     BinaryTreeNode<T> left;
     BinaryTreeNode<T> right;
 
-    public BinaryTreeNode(T data) {
-        this.data = data;
-    }
+y
 }
 
 public class BinaryTreeUses {

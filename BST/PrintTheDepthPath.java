@@ -1,5 +1,34 @@
-import java.util.*;
-public class SearchingNode {
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+
+public class PrintTheDepthPath {
+
+    public static ArrayList<Integer> getPath(BinaryTreeNode<Integer> root, int data) {
+        if (root == null)
+            return null;
+        if (root.data == data) {
+            ArrayList<Integer> output = new ArrayList<>();
+            output.add(root.data);
+            return output;
+        }
+        if (data < root.data) {
+            ArrayList<Integer> output = getPath(root.left, data);
+            if (output != null) {
+                output.add(root.data);
+                return output;
+            }
+        }
+        if (data > root.data) {
+            ArrayList<Integer> output = getPath(root.right, data);
+            if (output != null) {
+                output.add(root.data);
+                return output;
+            }
+        }
+        return null;
+    }
 
     public static BinaryTreeNode<Integer> takeTreeInputBetter(boolean isRoot, int parentData, boolean isLeft) {
         if (isRoot) {
@@ -40,19 +69,6 @@ public class SearchingNode {
         System.out.println();
         printTreeDetailed(root.left);
         printTreeDetailed(root.right);
-    }
-
-    public static boolean searchBST(BinaryTreeNode<Integer> root, int data) {
-        if (root == null) {
-            return false;
-        }
-        if (root.data.equals(data)) {
-            return true;
-        }
-        if (data < root.data) {
-            return searchBST(root.left, data);
-        }
-        return searchBST(root.right, data);
     }
 
     public static boolean isBST(BinaryTreeNode<Integer> root) {
@@ -96,6 +112,7 @@ public class SearchingNode {
         }
         return new IsBSTReturn(min, max, isBST);
     }
+    
     public static int largest(BinaryTreeNode<Integer> root) {
         if (root == null) {
             return Integer.MIN_VALUE;
@@ -113,14 +130,23 @@ public class SearchingNode {
         int rightMin = minimum(root.right);
         return Math.min(root.data, Math.min(leftMin, rightMin));
     }
+
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeTreeInputBetter(true, 0, true);
         System.out.println("Detailed Tree:");
         printTreeDetailed(root);
 
-        System.out.println("Search BST for 30: " + searchBST(root, 30));
-
         IsBSTReturn ans = isBST2(root);
         System.out.println("Min: " + ans.min + ", Max: " + ans.max + ", isBST: " + ans.isBST);
+
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the data to find the path:");
+        int data = s.nextInt();
+        ArrayList<Integer> path = getPath(root, data);
+        if (path != null) {
+            System.out.println("Path to " + data + ": " + path);
+        } else {
+            System.out.println("Data not found in the tree.");
+        }
     }
 }
